@@ -3,18 +3,19 @@ $( document ).ready(function() {
     $('.loader').hide();
     //although loader will be hidden due to being inside the collapsable divs , but still hidden due to precautionary purposes
     
-    var myFacebookToken = 'EAACEdEose0cBAKsMYoCnufDV2TDcitROARZAHoHc2M3ssq9TKcoUKHq3UZCbZAQmykkQtab9GtZCysJ1ZBGcEEh0QVy05AltH5lYhucZBWyP2DfuNfjtkxjvzTRDFp70ZCHekADFkziYARVYQKujYniyeKyzzGgQnxkcRiJIaPzs15VofeEsJZCn0ZCSelArvUE0ZD';
+    var myFacebookToken = 'EAACEdEose0cBACvlSTyEZB2hxvaXZACmlfpHMLqTyQgTzvI3CrJI8ODFKNUONRioILeAMYosmzBeTq2Y4KJiZAd4MZAgjiN1g9YzpY3Gy1APjknYs1Vt908LKKFKJ5UwqrqOOwHC5JVZB1ccMwDNPR2QyHiOfni7RiwmAx3xniOjTcVoO7gxwzzXY7VHZAxN4ZD';
     //Face book token here
 
     function getFacebookInfo(){
         $("#btn2").toggle();
         //hides button2 when button 1 is clicked(and profile page opens)
 
-        $.ajax('https://graph.facebook.com/me?fields=about,email,birthday,education,work,hometown,relationship_status,name,location,family&access_token='+myFacebookToken,{
+        $.ajax('https://graph.facebook.com/me?fields=about,email,birthday,education,work,hometown,relationship_status,name,location,family,id&access_token='+myFacebookToken,{
 
                 success : function(response){
                     console.log(response);
                     console.log(typeof(response));
+                    $("#profilePic").html("<img src=" +'"https://graph.facebook.com/'+response.id+'/picture?width=300&height=300"'+ "class='img-responsive'>");
                     $("#name").text(" " + response.name);
                     $("#email").text(" " + response.email);
                     $("#bday").text(" " + response.birthday);
